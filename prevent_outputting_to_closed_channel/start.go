@@ -3,6 +3,7 @@ package prevent_outputting_to_closed_channel
 import "fmt"
 
 func ErrorProneOutputtingToClosedChannel() {
+	fmt.Println("Error prone example")
 	ch := make(chan int)
 	close(ch)
 
@@ -17,5 +18,26 @@ func ErrorProneOutputtingToClosedChannel() {
 }
 
 func PreventClosedChannelOutputting() {
-	fmt.Println("Test")
+	fmt.Println("Pattern for preventing error from sending data to the closed channel.")
+	channel := make(chan int)
+
+	go sender(channel)
+
+	recipient(channel)
+}
+
+func sender(channel chan int) {
+	for i := 0; i < 10; i++ {
+		channel <- i
+	}
+
+	fmt.Println("Sender closes a channel after sending data.")
+	close(channel)
+}
+
+func recipient(channel chan int) {
+	fmt.Println("Recipient present data into console.")
+	for data := range channel {
+		fmt.Println(data)
+	}
 }
