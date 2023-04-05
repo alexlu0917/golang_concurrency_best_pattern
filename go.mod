@@ -1,3 +1,3 @@
-module golang/concurrency-pattern
+module concurrency-pattern
 
 go 1.19
