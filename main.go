@@ -1,6 +1,7 @@
 package main
 
 import (
+	"concurrency-pattern/generator_pattern"
 	"concurrency-pattern/prevent_outputting_to_closed_channel"
 	"fmt"
 )
@@ -13,4 +14,6 @@ func main() {
 
 	//Preventing error from sending data to the closed channel
 	prevent_outputting_to_closed_channel.PreventClosedChannelOutputting()
+
+	generator_pattern.MainFunc()
 }
