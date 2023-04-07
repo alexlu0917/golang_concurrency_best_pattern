@@ -32,6 +32,7 @@ func generator(input []int) chan int {
 }
 
 func consumer(inputCh chan int, resultCh chan Result) {
+	fmt.Println("consumer")
 	defer close(resultCh)
 	
 	for data := range inputCh {
