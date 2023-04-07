@@ -9,10 +9,12 @@ type Result struct {
 
 func StartPoint() {
 	fmt.Println("Updated Consumer error handle pattern")
-	// input := []int{1, 2, 3, 4}
-	// resultCh := make(chan Result)
+	input := []int{1, 2, 3, 4}
+	resultCh := make(chan Result)
 
-	// inputCh := generator(input)
+	inputCh := generator(input)
+	
+	consumer(inputCh, resultCh)
 }
 
 func generator(input []int) chan int {
@@ -27,4 +29,17 @@ func generator(input []int) chan int {
 	}()
 
 	return inputCh
+}
+
+func consumer(inputCh chan int, resultCh chan Result) {
+	defer close(resultCh)
+	
+	for data := range inputCh {
+		res, error = loadDataFromDatabase(data)
+		result := Result{
+			data: res,
+			err: error
+		}
+		resultCh <- data
+	}
 }
