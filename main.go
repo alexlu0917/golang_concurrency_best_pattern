@@ -14,6 +14,7 @@ func main() {
 
 	//Preventing error from sending data to the closed channel
 	prevent_outputting_to_closed_channel.PreventClosedChannelOutputting()
-
+	
+	//Generator Pattern
 	generator_pattern.MainFunc()
 }
