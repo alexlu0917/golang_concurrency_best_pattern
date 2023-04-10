@@ -10,6 +10,7 @@ func MainFunc() {
 	inputCh := generator(input)
 
 	consumer(inputCh)
+	fmt.Println("End generator")
 }
 
 func generator(input []int) chan int {
